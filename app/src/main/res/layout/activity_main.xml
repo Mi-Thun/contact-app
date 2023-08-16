@@ -33,9 +33,9 @@
         android:id="@+id/tvname"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:text="Name"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/userphoto"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,10 +44,11 @@
     <EditText
         android:id="@+id/username"
         android:layout_width="0dp"
-        android:background="@drawable/edittext_box_bg"
         android:layout_height="30dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edittext_box_bg"
         android:gravity="center_vertical"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/userphoto"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,7 +62,7 @@
         android:layout_marginEnd="16dp"
         android:onClick="ImageOnClick"
         android:scaleType="centerCrop"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/baseline_contacts_24"
         app:layout_constraintBottom_toTopOf="@+id/tvuseremail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/username"
@@ -73,8 +74,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Email"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/userphoto"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username" />
 
@@ -83,7 +84,7 @@
         android:background="@drawable/edittext_box_bg"
         android:layout_width="0dp"
         android:layout_height="30dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -95,7 +96,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Phone (Home)"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/useremail" />
@@ -105,7 +106,7 @@
         android:background="@drawable/edittext_box_bg"
         android:layout_width="0dp"
         android:layout_height="30dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -117,7 +118,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Phone (Office)"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userphone" />
@@ -127,14 +128,14 @@
         android:background="@drawable/edittext_box_bg"
         android:layout_width="0dp"
         android:layout_height="30dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvphn2" />
 
     <Button
-        android:id="@+id/exit"
+        android:id="@+id/cancle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -154,7 +155,7 @@
         android:textColor="@color/black"
         android:backgroundTint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/exit"
+        app:layout_constraintStart_toEndOf="@+id/cancle"
         app:layout_constraintTop_toBottomOf="@+id/userphone2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
