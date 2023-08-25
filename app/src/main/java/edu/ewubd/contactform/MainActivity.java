@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -17,22 +18,28 @@ import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
 import android.graphics.Bitmap;
 import android.util.Base64;
+
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.NameValuePair;
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.message.BasicNameValuePair;
+
 import java.io.ByteArrayOutputStream;
 
 
 public class MainActivity extends Activity {
     private static final int GALLERY_REQUEST_CODE = 123;
-    EditText etName, etEmail, etPhoneHome, etPhoneOffice;
+    private EditText etName, etEmail, etPhoneHome, etPhoneOffice;
     private ImageView ivPhoto;
     private ContactsDB contactsDB;
-    String image = "";
-
+    private String image = "";
+    private String contactID = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,9 +112,11 @@ public class MainActivity extends Activity {
                     etPhoneHome.getText().clear();
                     etPhoneOffice.getText().clear();
                     ivPhoto.setImageResource(R.drawable.baseline_contacts_24);
-                    // Clear the image data
-                    image = "";
                 }
+
+                String keys[] = {"action", "sid", "semester", "id", "name", "email", "phone_home", "phone_office", "image"};
+                String values[] = {"backup", "2019-3-60-046", "2023-2", contactID, name, email, phone_home, phone_office, image};
+                httpRequest(keys, values);
             }
         });
 
@@ -156,6 +165,35 @@ public class MainActivity extends Activity {
 
         AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    private void httpRequest(final String keys[],final String values[]){
+        new AsyncTask<Void,Void,String>(){
+            @Override
+            protected String doInBackground(Void... voids) {
+                List<NameValuePair> params=new ArrayList<NameValuePair>();
+                for (int i=0; i<keys.length; i++){
+                    params.add(new BasicNameValuePair(keys[i],values[i]));
+                }
+                String url= "http://localhost/events/";
+                String data="";
+                try {
+                    data=JSONParser.getInstance().makeHttpRequest(url,"POST",params);
+                    System.out.println(data);
+                    return data;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+            protected void onPostExecute(String data){
+                if(data!=null){
+                    System.out.println(data);
+                    System.out.println("Ok2");
+                    Toast.makeText(getApplicationContext(),data,Toast.LENGTH_SHORT).show();
+                }
+            }
+        }.execute();
     }
 }
 
